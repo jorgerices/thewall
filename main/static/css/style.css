@@ -1,0 +1,25 @@
+html {
+    background-image: url(../img/rayas.png);
+    background-repeat: no-repeat;
+    background-position: 300px -210px;    
+}
+
+h1 {
+    display: block;
+    position: relative;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 150px;
+    transform: rotate(-90deg);
+    margin: 100px 200px
+}
+
+.card {
+    min-width: 400px;
+    z-index: 99;
+    position: absolute;
+    margin-top: 125px;
+    border-top-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+

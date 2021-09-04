@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Inicia sesión o regístrate{% endblock %}
+
+{% block content %}
+    {% if messages %}
+    <div class="alert {{ request.session.level_mensaje }} alert-dismissible" role="alert" >
+        <ul>
+            {% for message in messages %}
+                <li><strong>{{message}}</strong></li>    
+            {% endfor %}                   
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </ul>
+    </div>        
+    {% endif %}    
+    <div class="row">
+        <div class="card col s3 offset-s5 z-depth-5">
+            <div class="card-content">
+                <form class="" action="/login" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="input-field col s10 offset-s1">
+                            <input id="email_login" type="email" class="validate" name="email_login" required>
+                            <label for="email_login">Correo electrónico</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s10 offset-s1">
+                            <input id="password_login" type="password" class="validate" name="password_login" required>
+                            <label for="password_login">Contraseña</label>   
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <button class="waves-effect waves-light btn col s10 offset-s1 grey darken-3" type="submit">Iniciar sesión</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="section center-align">
+                    <span class="card-title activator grey-text text-darken-4">¿No tienes una cuenta?</span>
+                    <a class="card-title activator" type="submit" href="#">Regístrate</a>
+                </div>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4 center-align">Regístrate<i class="material-icons right">close</i></span>
+                <form action="/signin" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="input-field col s10 offset-s1">
+                            <input id="first_name" type="text" class="validate" name="first_name" maxlength=30 required>
+                            <label for="first_name">Nombre</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s10 offset-s1">
+                            <input id="last_name" type="text" class="validate" name="last_name" maxlength=30 required>
+                            <label for="last_name">Apellido</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s10 offset-s1">
+                            <input id="email_register" type="email" class="validate" name="email_register" required>
+                            <label for="email_register">Correo electrónico</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s10 offset-s1">
+                            <input id="password_register" type="password" class="validate" name="password_register" required>
+                            <label for="password_register">Contraseña</label>
+                            <span class="helper-text">
+                                <ul class="">
+                                    <li>La contraseña de usuario debe tener al menos 6 caracteres</li>
+                                </ul>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s10 offset-s1">
+                            <input id="password_confirm" type="password" class="validate" name="password_confirm" required>
+                            <label for="password_confirm">Confirmar contraseña</label>   
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <button class="waves-effect waves-light btn col s10 offset-s1 grey darken-3" type="submit">Crear nuevo usuario</button>
+                        </div>
+                    </div>
+                </form>
+                {% if messages %}
+                <ul>    
+                {% for message in messages %}    
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col s1 offset s9">
+            <h1>
+                LOGIN
+            </h1>
+        </div>
+    </div>
+{% endblock %}
